@@ -5,6 +5,7 @@
  * @array: array to be partitioned
  * @first: first element of partition
  * @last: last element of partition
+ * @size: length of the array
  *
  * Return: index of pivot
  */
@@ -36,6 +37,7 @@ size_t partition(int *array, int first, int last, size_t size)
  * @array: array to be sorted
  * @first: first element of the array
  * @last: last element of the array
+ * @size: length of thte array
  *
  * Return: Nothing
  */
@@ -62,4 +64,4 @@ void qs(int *array, int first, int last, size_t size)
 void quick_sort(int *array, size_t size)
 {
 	qs(array, 0, size - 1, size);
-}	
+}
