@@ -7,27 +7,31 @@
  *
  * Return: Nothing
  */
-
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *tmp, *key;
+	listint_t *tmp;
 	int holder;
 
 	if (!list)
 		return;
-	for (key = (*list)->next; key; key = key->next)
+	tmp = *list;
+	while (tmp)
 	{
-		holder = key->n;
-		tmp = key->prev;
-		while (tmp && tmp->n > holder)
+		while (tmp)
 		{
-			*(int *)&tmp->next->n = tmp->n;
-			*(int *)&tmp->n = holder;
-			tmp = tmp->prev;
-			if (!tmp)
-				break;
-			print_list(*list);
+			if (tmp->next)
+			{
+				if (tmp->n > tmp->next->n)
+				{
+					holder = tmp->n;
+					*(int *)&tmp->n = tmp->next->n;
+					*(int *)&tmp->next->n = holder;
+					tmp = *list;
+					print_list(*list);
+					break;
+				}
+			}
+			tmp = tmp->next;
 		}
 	}
-	print_list(*list);
 }

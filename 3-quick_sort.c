@@ -11,24 +11,30 @@
  */
 size_t partition(int *array, int first, int last, size_t size)
 {
-	int pivot, i, j, tmp;
+	int i, j, tmp;
 
-	pivot = array[last];
 	i = first - 1;
 	for (j = first; j <= last - 1; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] < array[last])
 		{
 			i++;
-			tmp = array[i];
-			array[i] = array[j];
-			array[j] = tmp;
+			if (i < j)
+			{
+				tmp = array[i];
+				array[i] = array[j];
+				array[j] = tmp;
+				print_array(array, size);
+			}
 		}
 	}
-	tmp = array[i + 1];
-	array[i + 1] = array[last];
-	array[last] = tmp;
-	print_array(array, size);
+	if (array[i + 1] > array[last])
+	{
+		tmp = array[i + 1];
+		array[i + 1] = array[last];
+		array[last] = tmp;
+		print_array(array, size);
+	}
 	return (i + 1);
 }
 
